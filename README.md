@@ -1,6 +1,7 @@
-Bacalaureate data
+Romanian Baccalaureate data
 =============
-Inspired by [bac2012][]
+Inspired by [bac2012][].
+
 Results for 2012 are in the csv zipped in bac2012.zip. Separator is '|' and the first line is the header.
 
 
