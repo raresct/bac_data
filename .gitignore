@@ -1,5 +1,11 @@
 *.py[cod]
 
+# Rares
+*.csv
+*.txt
+docs
+collect_old.py
+
 # C extensions
 *.so
 
