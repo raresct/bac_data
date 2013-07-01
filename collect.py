@@ -10,7 +10,7 @@ def clean_var (var):
 
 def collect(year):
   year = str(year)
-  with open('out.txt', 'a') as f:
+  with open('out.txt', 'a', 1) as f:
     header = ('Nume complet', 'Judet', 'Pozitie tara', 'Unitate invatamant', 'Promotie anterioara', # 4
         'Forma invatamant', 'Specializare', 'Nota Limba romana (1)', 'Nota Limba romana (2)', 'Disciplina obligatorie', # 9
         'Nota la disciplina obligatorie (1)', 'Nota la disciplina obligatorie (2)', 'Disciplina la alegere',
@@ -22,7 +22,7 @@ def collect(year):
 
     # Read html filenames
     base_url = 'http://static.bacalaureat.edu.ro/'+year+'/rapoarte/rezultate/dupa_medie/'
-    page_no = 20020
+    page_no = 2029
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
 
@@ -32,7 +32,6 @@ def collect(year):
       driver.get(url)
       if '404' in driver.title:
         return
-
       # surround in try except until it can read
       table = driver.find_element_by_id('mainTable')
 
@@ -63,12 +62,11 @@ def collect(year):
         csv_row[14] = row3[3] # nota disc alegere (2)
         csv_row[15] = row2[16] # media
         csv_row[16] = u'1' if row2[17]==u'reu\u015fit' else u'0' # admis
-
         f.write(('|'.join(csv_row)+'\n').encode('utf-8'))
       page_no += 1
     driver.close()
 def main():
-  collect(2012)
+  collect(2011)
 
 if __name__=='__main__':
   main()
